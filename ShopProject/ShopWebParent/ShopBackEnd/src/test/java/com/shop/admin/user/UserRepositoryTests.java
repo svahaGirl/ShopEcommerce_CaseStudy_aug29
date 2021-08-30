@@ -2,18 +2,24 @@ package com.shop.admin.user;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.annotation.Rollback;
 
 import com.shop.common.entity.Role;
 import com.shop.common.entity.User;
 
-@DataJpaTest
+@DataJpaTest // if set showSQL as false in properties, results show as a list
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @Rollback(false)
 public class UserRepositoryTests {
@@ -44,8 +50,7 @@ public class UserRepositoryTests {
 		Role roleAssistant = new Role(5);
 		
 		userWill.addRole(roleAssistant);
-		userWill.addRole(roleEditor);
-		
+		userWill.addRole(roleEditor);		
 				
 		User savedUser = repo.save(userWill);
 			
@@ -95,5 +100,67 @@ public class UserRepositoryTests {
 		Integer userId=2;
 		repo.deleteById(userId);
 	}
+	
+	@Test
+	public void testGetUserByEmail() {
+		String email = "frank@gmail.com"; // this is a valid user email
+		//String email = "nana@gmail.com"; //this user does not exist.
+		User user = repo.getUserByEmail(email);
+		
+		assertThat(user).isNotNull();
+	}
+	
+	@Test
+	public void testCountById() {
+		Integer id = 14; // Valid user, test passed
+//		Integer id = 100; // Invalid user,test failed
+		Long countById = repo.countById(id);
+		
+		assertThat(countById).isNotNull().isGreaterThan(0);
+	}
+	
+	@Test
+	public void testDisableUser() {
+		Integer id = 1;
+		repo.updateEnabledStatus(id, false); //false is disabled
+		
+	}
+	@Test
+	public void testEnableUser() {
+		Integer id = 1;
+		repo.updateEnabledStatus(id, true); // true is enabled
+	}
+	
+	@Test
+	public void testListFirstPage() {
+		int pageNumber = 0;
+		int pageSize = 4;
+		//import .domain not .web...
+		Pageable pageable = PageRequest.of(pageNumber, pageSize);
+		Page<User> page = repo.findAll(pageable);
+		List<User> listUsers = page.getContent();
+		listUsers.forEach(user -> System.out.println(user));
+		
+		assertThat(listUsers.size()).isEqualTo(pageSize);
+	}
+	
+	@Test
+	public void testSearchUsers() {
+		String keyword = "dave";
+		
+		int pageNumber = 0;
+		int pageSize = 4;
+		
+		Pageable pageable = PageRequest.of(pageNumber, pageSize);
+		Page<User> page = repo.findAll(keyword, pageable);
+		
+		List<User> listUsers = page.getContent();
+		listUsers.forEach(user -> System.out.println(user));
+		
+		assertThat(listUsers.size()).isGreaterThan(0);
+		
+	}
+	
+	
 	
 }

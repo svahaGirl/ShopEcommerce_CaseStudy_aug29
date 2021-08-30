@@ -2,9 +2,9 @@ package com.shop.common.entity;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,7 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-
+import org.springframework.data.annotation.Transient;
 
 @Entity
 @Table(name = "users")
@@ -39,7 +39,7 @@ public class User {
 	private String photos;
 	private boolean enabled;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER) // For security login fetch data
 	@JoinTable( name="users_roles", 
 				joinColumns = @JoinColumn(name= "user_id"),
 				inverseJoinColumns = @JoinColumn(name= "role_id"))
@@ -144,5 +144,16 @@ public class User {
 				+ ", roles=" + roles + "]";
 	}
 	
+	@Transient
+	public String getPhotosImagePath() {
+		if(id == null || photos == null) return "/images/logo1.png";
+		return "/user-photos/" + this.id + "/" + this.photos;
+	}
 	
+	// Transient keyword in java is indicate a field should not be part
+	// of the persistent state of an object, which means saved like a file.
+	@Transient
+	public String getFullName() {
+		return firstName + " " + lastName;
+	}
 }

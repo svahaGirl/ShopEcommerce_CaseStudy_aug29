@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="https:www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments :: page_head('Error - Shop Admin')"/>
+<meta charset="ISO-8859-1">
+
+</head>
+<body>
+	<div class="container-fluid">
+		<div th:replace="navigation :: menu"></div>
+		<div class="m-3">
+			<H2>You entered an error page 404:</H2>
+			<br>
+			<h3> The requested page could not be found......</h2>
+		</div>
+	</div>
+	&nbsp;
+	<div th:replace="fragments :: footer"></div>
+</body>
+</html>

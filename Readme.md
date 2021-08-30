@@ -9,6 +9,37 @@ Project structure:
       *ShopWebParent:
             *ShopBackEnd(controllers and service and repositories and tests, most files are here, also path of created .log under target folder. );
             *ShopFrontEnd.
+            
+            #//Part 1: User management system.
+
+Step 1: Create a maven project as ShopProject (root project)
+
+        step 2: Create Spring boot starter project as ShopCommon 
+                (common library, use jpa dependency injection,delete application file under /main/java, delete test package, add module to root pom.xml)
+                
+                Step 3: Create Spring boot starter project as ShopWebParent project
+                        (delete UmsWebParentApplication under /main/java/, delete test package, add module to root pom.xml,
+                         add all needed dependency here(jpa,thymeleaf,mysql,test, webjars......)
+                        go to project properties,go to Project Natures, remove Java Maven Nature.)
+                        
+                        Step 4: Create Spring boot starter project as child: ShopBackEnd project 
+                                (Delete UmsBackEndApplicationTests.java, config application.properties)
+                                 (UMSBackEnd: refactor /com.shop to /com.shop.admin, create a MainController.java, 
+                                        create a template folder under resources, 
+                                        create a index.html, run backend application)
+
+                                
+                        Step 5: Create Spring boot starter project as child: ShopFrontEnd (refactor /com.shop to /com.shop.site, config application.properties)
+                                (create template folderand index.html, run frontent application)
+
+Step 6:
+
+Building User model
+        -Create User Entity and establish connection with SQL WorkBench to create Tables
+        -Create User Service
+        -Create User Repository
+        -Create User Controller
+
              ---------------------------------------------------------------------------------                         
 user uploaded photo is under ShopBackEnd, target folder.
 # Project Main Structour         

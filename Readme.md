@@ -1,6 +1,7 @@
 # CaseStudy_Aug29
 PerScholas Java Case Study
 
+
 This Case Study is User Management System, which is also part one of a more complex E-commerce Shop project, that is why you see the package is called Shop.
 ---------------------------------------------------------------------------------
 Project structure:
@@ -52,5 +53,5 @@ user uploaded photo is under ShopBackEnd, target folder.
 ![backendDir2](https://user-images.githubusercontent.com/56694905/130331239-a7479dc5-bd26-4777-bf7f-f1073b59909d.PNG)
 
 # User authorization
-# 404/403/500 Error page handling.
+# ADD 404/403/500 Error page handling.
                           

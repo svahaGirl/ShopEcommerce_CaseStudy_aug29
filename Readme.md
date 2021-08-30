@@ -1,5 +1,10 @@
+
 # CaseStudy_Aug29
 PerScholas Java Case Study
+# User Listing page:
+![usersListing1](https://user-images.githubusercontent.com/56694905/131401001-925f74e3-0937-4048-af11-150efafffdd1.PNG)
+# Create New User:
+![createNewUser1](https://user-images.githubusercontent.com/56694905/131401061-ea495609-05a4-4ddd-baf4-f0d3c20c8c7c.PNG)
 
 
 This Case Study is User Management System, which is also part one of a more complex E-commerce Shop project, that is why you see the package is called Shop.

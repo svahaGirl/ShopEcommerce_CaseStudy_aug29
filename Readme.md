@@ -1,5 +1,4 @@
 # CaseStudy_Aug29
-# Ying 
 PerScholas Java Case Study
 
 This Case Study is User Management System, which is also part one of a more complex E-commerce Shop project, that is why you see the package is called Shop.

@@ -48,7 +48,7 @@ Building User model
 
              ---------------------------------------------------------------------------------                         
 user uploaded photo is under ShopBackEnd, target folder.
-# Project Main Structour         
+# Project Main Structure         
 ![projectDir1](https://user-images.githubusercontent.com/56694905/130331238-dab03330-1c99-4ebb-9d27-378023f69967.PNG)
 
 # Project BackEnd Structure
